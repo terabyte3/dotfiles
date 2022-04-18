@@ -29,4 +29,5 @@ curl https://getmic.ro/r | sudo sh
 echo "installing starship..."
 curl -sS https://starship.rs/install.sh | sh
 
-echo "Done! Type `omz reload` to refresh now!"
+echo "Done! Reloading your shell now!"
+source ~/.zshrc
