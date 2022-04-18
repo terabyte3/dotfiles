@@ -2,7 +2,6 @@
 mv ./.zshrc ~
 mv ./antigen.zsh ~
 sudo apt install zsh
-sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 # install go
 echo "installing go..."
@@ -24,5 +23,8 @@ curl https://getmic.ro/r | sudo sh
 # https://starship.rs/
 echo "installing starship..."
 curl -sS https://starship.rs/install.sh | sh
+
+# install omz
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 echo "Done! Type `omz reload` to refresh now!"
