@@ -14,7 +14,6 @@ sudo bash install.sh
 - [apt-fast](https://github.com/ilikenwf/apt-fast)
 - [micro](https://micro-editor.github.io)
 - [starship](https://starship.rs)
-- [ohmyzsh](https://ohmyz.sh)
 - [golang](https://go.dev)
 - [thef*ck](https://github.com/nvbn/thefuck)
 - [antigen](https://github.com/zsh-users/antigen)
