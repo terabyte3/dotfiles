@@ -20,3 +20,4 @@ sudo bash install.sh
 - [k](https://github.com/supercrabtree/k)
 - [zsh-nvm](https://github.com/lukechilds/zsh-nvm)
 - [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)
+- [ohmyzsh](https://ohmyz.sh)
