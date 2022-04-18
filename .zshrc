@@ -170,3 +170,9 @@ eval "$(starship init zsh)"
 export PATH="$HOME/.poetry/bin:$PATH"
 
 eval $(thefuck --alias dang)
+export PATH="$PATH:$HOME/.spicetify"
+# GoLang
+export GOROOT=/home/thrzl/.go
+export PATH=$GOROOT/bin:$PATH
+export GOPATH=/home/thrzl/go
+export PATH=$GOPATH/bin:$PATH
