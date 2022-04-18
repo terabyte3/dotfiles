@@ -25,6 +25,6 @@ echo "installing starship..."
 curl -sS https://starship.rs/install.sh | sh
 
 # install omz
-sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+# sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 echo "Done! Type `omz reload` to refresh now!"
