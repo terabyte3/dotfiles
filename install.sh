@@ -1,3 +1,5 @@
+sudo apt update
+
 # install zsh
 sudo apt install zsh
 
@@ -28,6 +30,11 @@ curl https://getmic.ro/r | sudo sh
 # https://starship.rs/
 echo "installing starship..."
 curl -sS https://starship.rs/install.sh | sh
+
+# install thef*ck
+echo "installing thef*ck"
+sudo apt install python3-dev python3-pip python3-setuptools
+pip3 install thefuck --user
 
 echo "Done! Reloading your shell now!"
 source ~/.zshrc
