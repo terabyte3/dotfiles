@@ -1,40 +1,58 @@
-sudo apt update
+BOLD="$(tput bold 2>/dev/null || printf '')"
+GREY="$(tput setaf 0 2>/dev/null || printf '')"
+GREEN="$(tput setaf 2 2>/dev/null || printf '')"
+NO_COLOR="$(tput sgr0 2>/dev/null || printf '')"
+
+info() {
+  printf '%s\n' "${BOLD}${GREY}>${NO_COLOR} $*"
+}
+
+completed() {
+  printf '%s\n' "${GREEN}✓${NO_COLOR} $*"
+}
+
+info "updating package lists..."
+sudo apt-get update > /dev/null
 
 # install zsh
-sudo apt install zsh
+info "installing zsh..."
+sudo apt-get install zsh -y > /dev/null
 
 # install omz
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+(sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended) > /dev/null
 
 # configure zsh
-mv ./.zshrc ~
-mv ./antigen.zsh ~
+cp ./.* ~ > /dev/null # supress `-r not specified`
+info "changing your shell to zsh"
+sudo chsh -s $(which zsh)
 
 # install go
-echo "installing go..."
-curl https://raw.githubusercontent.com/canha/golang-tools-install-script/master/goinstall.sh | bash
+info "installing go..."
+(curl https://raw.githubusercontent.com/canha/golang-tools-install-script/master/goinstall.sh | sudo bash) > /dev/null
 
 # https://github.com/psanford/wormhole-william
-echo "installing wormhole william..."
-~/.go/bin/go install github.com/psanford/wormhole-william@latest
+info "installing wormhole william..."
+(go install github.com/psanford/wormhole-william@latest) > /dev/null
 
 # https://github.com/ilikenwf/apt-fast
-echo "installing apt-fast..."
-/bin/bash -c "$(curl -sL https://git.io/vokNn)"
+info "installing apt-fast..."
+(sudo bash -c "$(curl -sL https://git.io/vokNn)") > /dev/null
 
 # https://micro-editor.github.io/
-echo "installing micro..."
+info "installing micro..."
 cd /usr/bin
-curl https://getmic.ro/r | sudo sh
+(curl https://getmic.ro/r | sudo sh) > /dev/null
 
 # https://starship.rs/
-echo "installing starship..."
-curl -sS https://starship.rs/install.sh | sh
+info "installing starship..."
+(sudo sh -c "$(curl -sS https://starship.rs/install.sh)" "" --yes) > /dev/null
 
 # install thef*ck
-echo "installing thef*ck"
-sudo apt install python3-dev python3-pip python3-setuptools
-pip3 install thefuck --user
+info "installing thef*ck"
+sudo apt-get install python3-dev python3-pip python3-setuptools > /dev/null
+pip3 install thefuck --user > /dev/null
 
-echo "Done! Reloading your shell now!"
-source ~/.zshrc
+
+completed "all done! let's get started 💪🏽"
+cd ~ # go back to home dir
+zsh
