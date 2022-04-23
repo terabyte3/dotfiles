@@ -11,7 +11,7 @@ export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:~/.local/bin
 
 # we need antigen
-source ~/antigen.zsh
+source ~/.antigen.zsh
 
 # omz installation
 export ZSH="$HOME/.oh-my-zsh"
@@ -92,7 +92,7 @@ ZSH_THEME="robbyrussell"
 export NVM_LAZY_LOAD=true
 export NVM_COMPLETION=true
 
-antigen bundle lukechilds/zsh-nvm
+# antigen bundle lukechilds/zsh-nvm
 antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle supercrabtree/k
 antigen apply
@@ -137,9 +137,9 @@ function mkcd {
 # written by me, shortcut for git clone. example: clone terabyte3/crust
 function clone {
 	if [ ! -n "$2" ]; then
-		git clone https://github.com/"$1"
+		git clone git@github.com:"$1".git
 	else
-		git clone https://github.com/"$1" "$2"
+		git clone git@github.com:"$1".git "$2"
 	fi
 }
 
@@ -147,6 +147,10 @@ function clone {
 function copyfile {
   emulate -L zsh
   clipcopy $1
+}
+
+function clean_modules {
+    find . -type d -name node_modules -exec echo "cleaning up " {} \; -exec rm -rf {} \; -exec mkdir {} \;
 }
 
 # Compilation flags
@@ -169,10 +173,13 @@ eval "$(starship init zsh)"
 
 export PATH="$HOME/.poetry/bin:$PATH"
 
-eval $(thefuck --alias dang)
+eval "$(thefuck --alias dang --enable-experimental-instant-mode)"
 export PATH="$PATH:$HOME/.spicetify"
 # GoLang
 export GOROOT=/home/thrzl/.go
 export PATH=$GOROOT/bin:$PATH
 export GOPATH=/home/thrzl/go
 export PATH=$GOPATH/bin:$PATH
+
+export PNPM_HOME="/home/thrzl/.local/share/pnpm"
+export PATH="$PNPM_HOME:$PATH"
