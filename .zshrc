@@ -1,4 +1,5 @@
 (cat ~/.cache/wal/sequences &)
+setopt autocd # move into directory by simply typing its name
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
