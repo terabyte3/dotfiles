@@ -14,12 +14,15 @@ completed() {
 info "updating package lists..."
 sudo apt-get update > /dev/null
 
+info "installing curl..."
+sudo apt-get install curl > /dev/null
+
 # install zsh
 info "installing zsh..."
 sudo apt-get install zsh -y > /dev/null
 
 # install omz
-(sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended) > /dev/null
+# (sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended) > /dev/null
 
 # configure zsh
 cp ./.* ~ > /dev/null # supress `-r not specified`
@@ -52,6 +55,8 @@ info "installing thef*ck"
 sudo apt-get install python3-dev python3-pip python3-setuptools > /dev/null
 pip3 install thefuck --user > /dev/null
 
+info "installing zsh-autosuggestions"
+git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
 
 completed "all done! let's get started 💪🏽"
 cd ~ # go back to home dir
