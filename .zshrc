@@ -1,3 +1,5 @@
+(cat ~/.cache/wal/sequences &)
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -9,20 +11,23 @@
 # add stuff to path
 export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:~/.local/bin
+export PATH=$PATH:~/.local/share/pnpm
+
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # we need antigen
-source ~/.antigen.zsh
+# source ~/.antigen.zsh
 
 # omz installation
-export ZSH="$HOME/.oh-my-zsh"
+# export ZSH="$HOME/.oh-my-zsh"
 
 # https://github.com/psanford/wormhole-william
 alias wh=wormhole-william
-alias zshrc="micro ~/.zshrc && omz reload"
+alias zshrc="micro ~/.zshrc && source ~/.zshrc"
 alias apt="apt-fast"
 alias python="python3"
-alias ls="k"
 alias pip="python3 -m pip"
+alias ytdla="youtube-dl -f 'bestaudio[ext=m4a]' --external-downloader aria2c"
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
@@ -93,13 +98,13 @@ export NVM_LAZY_LOAD=true
 export NVM_COMPLETION=true
 
 # antigen bundle lukechilds/zsh-nvm
-antigen bundle zsh-users/zsh-autosuggestions
-antigen bundle supercrabtree/k
-antigen apply
+# antigen bundle zsh-users/zsh-autosuggestions
+# antigen bundle supercrabtree/k
+# antigen apply
 
 plugins=(git)
 
-source $ZSH/oh-my-zsh.sh
+# source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
@@ -130,16 +135,16 @@ function mkcd {
   elif [ -d $last ]; then
     echo "\`$last' already exists"
   else
-    mkdir $@ && cd $last
+    mkdir -p $@ && cd $last
   fi
 }
 
 # written by me, shortcut for git clone. example: clone terabyte3/crust
 function clone {
 	if [ ! -n "$2" ]; then
-		git clone git@github.com:"$1".git
+		git clone https://github.com/"$1".git
 	else
-		git clone git@github.com:"$1".git "$2"
+		git clone https://github.com/"$1".git "$2"
 	fi
 }
 
@@ -167,6 +172,15 @@ function clean_modules {
 
 fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
 
+autoload -Uz compinit 
+if [[ -n ${ZDOTDIR}/.zcompdump(#qN.mh+24) ]]; then
+	compinit;
+else
+	compinit -C;
+fi;
+
+
+
 eval "$(starship init zsh)"
 
 # export NVM_DIR="$HOME/.nvm"
@@ -176,10 +190,13 @@ export PATH="$HOME/.poetry/bin:$PATH"
 eval "$(thefuck --alias dang --enable-experimental-instant-mode)"
 export PATH="$PATH:$HOME/.spicetify"
 # GoLang
-export GOROOT=/home/thrzl/.go
+export GOROOT=~/.go
 export PATH=$GOROOT/bin:$PATH
-export GOPATH=/home/thrzl/go
+export GOPATH=~/go
 export PATH=$GOPATH/bin:$PATH
 
-export PNPM_HOME="/home/thrzl/.local/share/pnpm"
+export PNPM_HOME="~/.local/share/pnpm"
 export PATH="$PNPM_HOME:$PATH"
+
+# for https://github.com/peltoche/lsd
+# alias ls="lsd"
