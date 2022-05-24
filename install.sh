@@ -15,7 +15,7 @@ info "updating package lists..."
 sudo apt-get update > /dev/null
 
 info "installing curl..."
-sudo apt-get install curl > /dev/null
+sudo apt-get install curl -y > /dev/null
 
 # install zsh
 info "installing zsh..."
@@ -52,8 +52,7 @@ info "installing starship..."
 
 # install thef*ck
 info "installing thef*ck"
-sudo apt-get install python3-dev python3-pip python3-setuptools > /dev/null
-pip3 install thefuck --user > /dev/null
+sudo apt-get install thefuck -y > /dev/null
 
 info "installing zsh-autosuggestions"
 git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
